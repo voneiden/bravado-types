@@ -34,7 +34,7 @@ def _get_model_info(spec: Spec, name: str, mclass: Type[Model], config: Config
                     ) -> ModelInfo:
     """Extract type information for a given model class."""
     # Name may contain spaces, get rid of them
-    name = ''.join(w.capitalize() for w in name.split(' '))
+    name = ''.join(w[:1].upper() + w[1:] for w in name.split(' '))
     required_props = _get_required_props(spec, mclass)
     return ModelInfo(
         mclass, name, mclass._inherits_from,
