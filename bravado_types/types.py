@@ -82,7 +82,8 @@ def _get_object_type_info(spec: Spec, schema: Dict[str, Any], config: Config
     :return: A TypeInfo for the schema.
     """
     if "x-model" in schema:
-        return TypeInfo(config.model_type(schema["x-model"]))
+        x_model = ''.join(w[:1].upper() + w[1:] for w in schema["x-model"].split(' '))
+        return TypeInfo(config.model_type(x_model))
 
     # Special case: allOf with a single item. This may be used to specify a
     # nullable ref, like this:
