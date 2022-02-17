@@ -33,6 +33,9 @@ __all__ = [
 ]
 
 class ${config.client_type}(bravado.client.SwaggerClient):
+% for resource in spec.resources:
+    ${resource.name}: ${config.resource_type(resource.name)}
+% endfor
     def __init__(self, swagger_spec: bravado_core.spec.Spec,
                  also_return_response: bool = False) -> None:
 % for resource in spec.resources:
